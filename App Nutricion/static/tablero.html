@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero Nutricional Diario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f0f2f5; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .card { border: none; border-radius: 15px; }
+        .table-container { background: white; border-radius: 15px; padding: 20px; height: 100%; }
+        .status-badge { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .cat-name { font-size: 0.85rem; color: #495057; }
+        .val-num { font-family: monospace; font-size: 1rem; }
+        .progress { background-color: #e9ecef; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark shadow-sm mb-4">
+        <div class="container">
+            <span class="navbar-brand mb-0 h1">🍏 Tablero de Control Nutricional</span>
+            <div>
+                <a href="/gui" class="btn btn-outline-info btn-sm">Entrenador (Pendientes)</a>
+                <a href="/comparativa_dias" class="btn btn-outline-light btn-sm">Histórico</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mb-5">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <form method="get" action="/tablero_diario" class="row g-3 align-items-center justify-content-center">
+                    <div class="col-auto">
+                        <label class="fw-bold">Consultar Día:</label>
+                    </div>
+                    <div class="col-md-3">
+                        <select name="fecha" class="form-select border-primary shadow-sm">
+                            <option value="">-- Selecciona una fecha --</option>
+                            {% for f in fechas %}
+                            <option value="{{ f }}" {% if f == fecha_sel %}selected{% endif %}>{{ f }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary px-4 shadow-sm">Analizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        {% if fecha_sel %}
+        <div class="row g-4">
+            <div class="col-lg-7">
+                <div class="table-container shadow-sm">
+                    <h5 class="mb-4 border-bottom pb-2 text-primary">🍴 Alimentos Registrados</h5>
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Alimento</th>
+                                    <th>Grupo</th>
+                                    <th class="text-center">Cant.</th>
+                                    <th class="text-center">Eq.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for fila in tabla %}
+                                <tr {% if fila.categoria == 'SIN CLASIFICAR' %}class="table-warning"{% endif %}>
+                                    <td>
+                                        <div class="fw-bold">{{ fila.alimento }}</div>
+                                        {% if fila.categoria == 'SIN CLASIFICAR' %}
+                                        <small class="text-danger" style="font-size: 0.7rem;">⚠️ No reconocido</small>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        <span class="badge {% if fila.categoria == 'SIN CLASIFICAR' %}bg-warning text-dark{% else %}bg-secondary{% endif %}">
+                                            {{ fila.categoria }}
+                                        </span>
+                                    </td>
+                                    <td class="text-center"><small>{{ fila.cantidad_consumida }} {{ fila.unidad }}</small></td>
+                                    <td class="text-center fw-bold val-num text-primary">{{ fila.equivalentes_calculados }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-header bg-primary text-white py-3">
+                        <h6 class="mb-0 fw-bold">🎯 Cumplimiento del Plan Maestro</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-sm align-middle">
+                                <thead>
+                                    <tr class="text-muted" style="font-size: 0.75rem;">
+                                        <th>GRUPO</th>
+                                        <th class="text-center">PLAN</th>
+                                        <th class="text-center">REAL</th>
+                                        <th class="text-center">ESTADO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for info in comparativa %}
+                                    <tr>
+                                        <td class="cat-name fw-bold py-2 text-uppercase">{{ info.categoria }}</td>
+                                        <td class="text-center val-num text-muted">{{ info.meta }}</td>
+                                        <td class="text-center val-num fw-bold">{{ info.consumido }}</td>
+                                        <td class="text-center">
+                                            {% if info.meta == 0 and info.consumido > 0 %}
+                                                <span class="badge rounded-pill bg-warning text-dark status-badge">Extra</span>
+                                            {% elif info.consumido > info.meta %}
+                                                <span class="badge rounded-pill bg-danger status-badge">Exceso</span>
+                                            {% elif info.consumido == info.meta and info.meta > 0 %}
+                                                <span class="badge rounded-pill bg-success status-badge">OK</span>
+                                            {% elif info.consumido < info.meta and info.consumido > 0 %}
+                                                <span class="badge rounded-pill bg-info status-badge">En curso</span>
+                                            {% else %}
+                                                <span class="badge rounded-pill bg-light text-muted status-badge">Falta</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="p-0 border-0">
+                                            <div class="progress" style="height: 5px; border-radius: 0;">
+                                                <div class="progress-bar {% if info.consumido > info.meta %}bg-danger{% else %}bg-success{% endif %}" 
+                                                   <div role="progressbar" :style="{ width: info.porcentaje + '%' }"></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        {% set total_meta = comparativa|sum(attribute='meta') %}
+                        {% if total_meta == 0 %}
+                        <div class="alert alert-warning mt-3 border-0 shadow-sm" style="font-size: 0.8rem;">
+                            <strong>Aviso:</strong> No se detectaron metas para este día (Metas = 0). 
+                            Verifica que hayas cargado tu Plan Maestro correctamente.
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <h4 class="text-muted">Selecciona una fecha para comenzar el análisis diario</h4>
+            <p class="text-secondary">El sistema cruzará tu consumo con las metas del plan.</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer class="text-center text-muted mb-4">
+        <small>NutriDash v2.0 | Sistema de Gestión de Equivalentes</small>
+    </footer>
+</body>
+</html>

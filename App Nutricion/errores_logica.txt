@@ -1,0 +1,17 @@
+
+--- ERROR EN procesar_dia ---
+Traceback (most recent call last):
+  File "C:\Users\ferrr\app-nutricion\logica.py", line 74, in procesar_dia
+    fecha_limpia = primer_elemento.strip().replace('"', "").replace("'", "")
+                   ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'strip'
+
+==================================================
+--- ERROR EN procesar_dia ---
+Traceback (most recent call last):
+  File "C:\Users\ferrr\app-nutricion\logica.py", line 68, in procesar_dia
+    fecha_limpia = primer_bloque.strip().replace('"', "").replace("'", "")
+                   ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'strip'
+
+==================================================

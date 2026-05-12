@@ -1,0 +1,82 @@
+Item,Cals ( kcal),Grasa( g),Sat( g),Carbh( g),Fibra( g),Azúcar( g),Prot( g),Sod( mg),Coles( mg),Potasio( mg),Fecha,cantidad_consumida,unidad_medida
+  Plátano,32,12,4,809,9,433,39,0,0,127,27/04/2026,0.3,pieza
+  Aceite de Oliva,119,135,1864,0,0,0,0,0,0,0,27/04/2026,1.0,cucharada
+  Huevo,220,1491,4648,116,0,116,1887,210,634,201,27/04/2026,3.0,pieza
+  Jitomate,10,1,2,216,6,154,49,4,0,113,27/04/2026,50.0,g
+  Bolillo,37,58,13,678,4,4,116,82,0,15,27/04/2026,0.3,pieza
+  Espinacas,7,12,19,109,7,13,86,24,0,167,27/04/2026,1.0,taza
+  Papayas,82,29,9,206,38,1239,128,6,0,540,27/04/2026,1.5,taza
+  Fresh Gourmet Crutones Sabor Italiano,31,119,1,435,0,35,68,80,0,0,27/04/2026,7.0,g
+  Pechuga de Pollo a la Plancha,111,175,484,0,0,0,2239,149,58,222,27/04/2026,100.0,g
+  Ensalada de Lechuga con Verduras Variadas (Incluidos los Tomates y/o Zanahorias),25,25,45,555,2,333,127,28,0,291,27/04/2026,2.0,tazas
+  Papayas,82,29,9,206,38,1239,128,6,0,540,27/04/2026,1.5,taza
+  Fresh Gourmet Crutones Sabor Italiano,31,119,1,435,0,35,68,80,0,0,27/04/2026,7,g
+  Pechuga de Pollo a la Plancha,111,175,484,0,0,0,2239,149,58,222,27/04/2026,100.0,g
+  Ensalada de Lechuga con Verduras Variadas (Incluidos los Tomates y/o Zanahorias),25,25,45,555,2,333,127,28,0,291,27/04/2026,2.0,tazas
+  Leche (Leche Entera),146,793,4551,1103,0,1283,786,98,24,349,27/04/2026,1.0,taza
+  Quaker Hojuelas de Avena Natural (30g),71,13,3,121,28,1,27,0,0,,27/04/2026,30.0,g
+  Leche (Leche Entera),146,793,4551,1103,0,1283,786,98,24,349,27/04/2026,1.0,taza
+  Quaker Hojuelas de Avena Natural (30g),71,13,3,121,28,1,27,0,0,,27/04/2026,30.0,g
+  Huevo Revuelto,199,1521,5784,196,0,143,1301,211,400,138,02/05/2026,2.0,huevos
+  La Sierra Frijoles Negros Refritos,128,56,5,133,44,8,61,513,0,,02/05/2026,1.0,porción
+  Tortillas de Maíz,52,68,109,1071,15,21,137,11,0,45,02/05/2026,1.0,tortilla
+  Camarones,60,99,187,52,0,0,1159,257,87,74,02/05/2026,7.0,camarones
+  Aguacate,144,1319,1913,768,6,59,18,6,0,436,02/05/2026,9.0,tajadas
+  Ceviche de Pescado,84,97,204,45,6,16,1406,158,25,362,02/05/2026,0.5,taza
+  Milpa Real Tostadas de Maiz,153,9,12,159,18,3,18,294,0,0,02/05/2026,36,g
+  Capuchino,74,398,2273,581,2,641,408,50,12,233,02/05/2026,1.0,taza
+  Ruffles Queso,75,49,85,685,6,4,85,905,0,0,02/05/2026,15,g
+  Sandía,91,46,49,2295,12,1885,185,3,0,340,02/05/2026,2.0,tazas
+  Nopales,8,4,8,166,11,58,66,10,0,128,01/05/2026,50.0,g
+  Guacamole,69,625,907,372,29,31,86,65,0,208,01/05/2026,3.0,cucharadas
+  Aguacate,32,293,425,171,13,13,4,1,0,97,01/05/2026,2.0,tajadas
+  Carnitas,284,227,8254,151,7,13,1775,336,74,297,01/05/2026,150.0,g
+  Tortillas de Maíz,52,68,109,1071,15,21,137,11,0,45,01/05/2026,1.0,tortilla
+  Plátano,32,12,4,809,9,433,39,0,0,127,01/05/2026,0.3,un/una
+  Bistec de Res,223,762,282,0,0,0,3615,94,78,564,01/05/2026,165.0,g
+  Bolillo,125,194,433,2259,14,14,387,274,0,51,01/05/2026,1.0,mediano
+  Tortillas de Maíz,52,68,109,1071,15,21,137,11,0,45,01/05/2026,1.0,tortilla
+  Capuchino,74,398,2273,581,2,641,408,50,12,233,01/05/2026,240.0,ml
+  Pronto Gelatina Light Sabor Uva,12,0,0,1,0,0,2,218,0,,01/05/2026,100.0,g
+  Bionda Requesón,39,24,17,1,0,1,33,154,10,,30/04/2026,30.0,g
+  Plátano,32,12,4,809,9,433,39,0,0,127,30/04/2026,0.3,un/una
+  Huevo Revuelto,299,2281,8676,293,0,214,1951,316,601,207,30/04/2026,3.0,huevos
+  Tortillas de Maíz,52,68,109,1071,15,21,137,11,0,45,30/04/2026,1.0,tortilla
+  Alpura Queso Oaxaca,139,10,7,15,0,15,1075,350,0,0,30/04/2026,50.0,g
+  Pechuga de Pollo a la Plancha,111,175,484,0,0,0,2239,149,58,222,30/04/2026,100.0,g
+  Crutones Sabor Italiano,31,119,1,435,0,35,68,80,0,0,30/04/2026,7,g
+  Ensalada de Lechuga con Verduras Variadas (Incluidos los Tomates y/o Zanahorias),25,25,45,555,2,333,127,28,0,291,30/04/2026,2.0,tazas
+  Manzana,18,6,1,476,8,358,9,0,0,37,30/04/2026,0.3,pieza
+  Hojuelas de Avena Natural (30g),71,13,3,121,28,1,27,0,0,,30/04/2026,30,g
+  Espinacas,7,12,19,109,7,13,86,24,0,167,30/04/2026,1.0,taza
+  Leche Entera,146,793,4551,1103,0,1283,786,98,24,349,30/04/2026,1.0,taza
+  Chicharrones de Harina,150,81,1584,1778,9,6,168,91,0,163,30/04/2026,30.0,g
+  D'Gari Gelatina de Agua,56,0,0,115,0,115,25,13,0,,30/04/2026,130,g
+  Sandía,46,23,24,1148,6,942,93,2,0,170,30/04/2026,1.0,taza
+  Leche (Leche Entera),37,198,1138,276,0,321,196,24,6,87,29/04/2026,0.3,taza
+  Café,2,5,5,9,0,0,28,5,0,111,29/04/2026,240.0,ml
+  Azúcar,33,0,0,84,0,839,0,0,0,0,29/04/2026,2.0,cucharaditas
+  Tortillas de Maíz,52,68,109,1071,15,21,137,11,0,45,29/04/2026,1.0,tortilla
+  Huevo Revuelto,299,2281,8676,293,0,214,1951,316,601,207,29/04/2026,3.0,huevos
+  Plátano,32,12,4,809,9,433,39,0,0,127,29/04/2026,0.3,piezas
+  Bionda Requesón,121,9,63,4,0,4,6,584,10,0,29/04/2026,100.0,g
+  Pechuga de Pollo a la Plancha,111,175,484,0,0,0,2239,149,58,222,29/04/2026,100.0,g
+  Crutones Sabor Italiano,31,119,1,435,0,35,68,80,0,0,29/04/2026,7.0,g
+  Ensalada de Lechuga con Verduras Variadas (Incluidos los Tomates y/o Zanahorias),25,25,45,555,2,333,127,28,0,291,29/04/2026,2.0,tazas
+  Manzana,18,6,1,476,8,358,9,0,0,37,29/04/2026,0.3,pieza
+  D'Gari Gelatina de Agua,56,0,0,115,0,115,25,13,0,,29/04/2026,130.0,g
+  Papayas,55,2,6,1373,25,826,85,4,0,360,29/04/2026,1.0,taza
+  Hojuelas de Avena Natural (30g),71,13,3,121,28,1,27,0,0,,29/04/2026,30,g
+  Espinacas,7,12,19,109,7,13,86,24,0,167,29/04/2026,1.0,taza
+  Leche Entera,146,793,4551,1103,0,1283,786,98,24,349,29/04/2026,1.0,taza
+  Bolillo,37,58,13,678,4,4,116,82,0,15,28/04/2026,0.3,piezas
+  Plátano,32,12,4,809,9,433,39,0,0,127,28/04/2026,0.3,piezas
+  Bionda Requesón,78,48,34,2,0,2,66,308,20,,28/04/2026,60.0,g
+  Frijoles Cocidos,191,651,2464,2706,7,,701,534,6,453,28/04/2026,0.5,taza
+  Pechuga de Pollo a la Plancha,111,175,484,0,0,0,2239,149,58,222,28/04/2026,100.0,g
+  Crutones Sabor Italiano,31,119,1,435,0,35,68,80,0,0,28/04/2026,7.0,g
+  Ensalada de Lechuga con Verduras Variadas (Incluidos los Tomates y/o Zanahorias),25,25,45,555,2,333,127,28,0,291,28/04/2026,2.0,tazas
+  Manzana,18,6,1,476,8,358,9,0,0,37,28/04/2026,0.3,pieza
+  Pronto Gelatina,41,0,0,835,0,792,187,9277,0,0,28/04/2026,130.0,g
+  Fresas,9,8,4,215,6,13,19,0,0,43,28/04/2026,4.0,pequeñas
+  Papayas,55,2,6,1373,25,826,85,4,0,360,28/04/2026,1.0,taza

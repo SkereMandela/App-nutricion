@@ -1,0 +1,143 @@
+<template>
+    <div class="container">
+        <h1>🎓 Centro de Entrenamiento Nutricional</h1>
+        <p>Vincula alimentos desconocidos y corrige pesos en gramos para cálculos exactos.</p>
+
+        <div 
+            v-for="reg in registros" 
+            :key="reg.id"
+            :id="'card-' + reg.id"
+            :class="[
+                'card', 
+                reg.motivo.includes('Clasificación') ? 'error-clasificacion' : 'error-gramos',
+                { 'success-card': reg.validado }
+            ]"
+        >
+            <div class="info">
+                <b>{{ reg.item }}</b> <br>
+                <span>Momento: {{ reg.comida }}</span> | 
+                <span style="color: #2980b9;">Registrado: <b>{{ reg.cantidad }}</b></span> <br>
+                
+                <div :class="['badge', reg.motivo.includes('Clasificación') ? 'bg-danger' : 'bg-warning']">
+                    {{ reg.motivo }}
+                </div>
+            </div>
+            
+            <div class="controls">
+                <div class="control-group">
+                    <label>Equivalente en Catálogo</label>
+                    <select v-model="reg.sugerencia_id" @change="actualizarGramosDesdeCatalogo(reg)">
+                        <option value="" disabled>-- Seleccionar Alimento --</option>
+                        <option v-for="cat in catalogo" :key="cat.id" :value="cat.id">
+                            {{ cat.alimento }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label>Gramos Ref.</label>
+                    <input 
+                        type="number" 
+                        step="0.1" 
+                        v-model="reg.sugerencia_gramos"
+                        :class="{ 'alerta-cero': !reg.sugerencia_gramos || reg.sugerencia_gramos == 0 }"
+                    >
+                </div>
+
+                <button @click="ejecutarValidacion(reg)">Validar y Guardar</button>
+            </div>
+        </div>
+
+        <div v-if="registros.length === 0" style="text-align: center; padding: 100px; color: #95a5a6;">
+            <h2>✨ ¡Base de Datos Limpia!</h2>
+            <p>No se encontraron inconsistencias en los registros de hoy.</p>
+        </div>
+    </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+
+// Aquí deberías cargar tus datos reales (por ejemplo, desde una API)
+const registros = ref([
+    // Ejemplo de cómo debería lucir la data
+    // { id: 1, item: 'Manzana', comida: 'Desayuno', cantidad: '1 pieza', motivo: 'Falta Clasificación', sugerencia_id: '', sugerencia_gramos: 0, validado: false }
+]);
+
+const catalogo = ref([
+    // Ejemplo: { id: 101, alimento: 'Manzana cruda', peso_gramos: 150 }
+]);
+
+// Función para actualizar gramos al cambiar el select
+const actualizarGramosDesdeCatalogo = (reg) => {
+    const alimentoSeleccionado = catalogo.value.find(c => c.id === reg.sugerencia_id);
+    if (alimentoSeleccionado) {
+        reg.sugerencia_gramos = alimentoSeleccionado.peso_gramos;
+    }
+};
+
+// Función para enviar los datos (Fetch API)
+const ejecutarValidacion = async (reg) => {
+    if (!reg.sugerencia_id) {
+        alert("Por favor, selecciona un alimento del catálogo antes de validar.");
+        return;
+    }
+
+    const url = `/aprender?item_original=${encodeURIComponent(reg.item)}&id_equivalente=${reg.sugerencia_id}&peso_gramos=${reg.sugerencia_gramos}`;
+    
+    try {
+        const response = await fetch(url, { method: 'POST' });
+        const result = await response.json();
+
+        if (result.status === "success") {
+            // Agregamos una propiedad para que Vue aplique la clase 'success-card' automáticamente
+            reg.validado = true; 
+            console.log(`Entrenado: ${reg.item} -> ${reg.sugerencia_gramos}g`);
+        } else {
+            alert("Error al guardar en la base de datos.");
+        }
+    } catch (error) {
+        alert("Error crítico de comunicación con el servidor.");
+    }
+};
+</script>
+
+<style scoped>
+/* Tus estilos originales se mantienen exactamente igual aquí */
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; padding: 20px; color: #333; }
+.container { max-width: 1000px; margin: auto; }
+h1 { color: #1a2a6c; border-bottom: 2px solid #1a2a6c; padding-bottom: 10px; }
+.card { 
+    background: white; padding: 20px; margin-bottom: 15px; 
+    border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    display: flex; justify-content: space-between; align-items: center;
+    transition: all 0.3s ease; border-left: 6px solid #ccc;
+}
+.error-clasificacion { border-left-color: #e74c3c; }
+.error-gramos { border-left-color: #f39c12; }
+.info { flex: 1; }
+.info b { font-size: 1.2em; color: #2c3e50; }
+.info span { color: #7f8c8d; font-size: 0.95em; }
+.badge {
+    display: inline-block; padding: 4px 10px; border-radius: 20px;
+    font-size: 0.8em; font-weight: bold; margin-top: 8px;
+}
+.bg-danger { background: #ffdada; color: #c0392b; }
+.bg-warning { background: #fff4e1; color: #d35400; }
+.controls { display: flex; gap: 15px; align-items: flex-end; }
+.control-group { display: flex; flex-direction: column; gap: 5px; }
+label { font-size: 0.75em; font-weight: bold; color: #555; text-transform: uppercase; }
+select { padding: 10px; border-radius: 6px; border: 1px solid #cbd5e0; width: 280px; background: #fff; }
+input[type="number"] { 
+    padding: 10px; border-radius: 6px; border: 1px solid #cbd5e0; 
+    width: 80px; text-align: center; font-weight: bold;
+}
+input.alerta-cero { background: #fff3cd; border-color: #ffeeba; color: #856404; }
+button { 
+    background: #2ecc71; color: white; border: none; 
+    padding: 12px 20px; border-radius: 8px; cursor: pointer;
+    font-weight: bold; transition: background 0.2s;
+}
+button:hover { background: #27ae60; }
+.success-card { background: #d4edda !important; opacity: 0.7; pointer-events: none; }
+</style>
